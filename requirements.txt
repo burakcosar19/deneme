@@ -5,12 +5,10 @@ numpy
 plotly
 acoustics
 scikit-learn
-utils
 reportlab
 pygments
 mdurl
 markdown-it-py
 rich
-df_t60
-df_t60_dolu
-yutum_katsayisi
+
+
