@@ -6,7 +6,6 @@ plotly
 acoustics
 scikit-learn
 utils
-streamlit_app_döngülü
 reportlab
 pygments
 mdurl
