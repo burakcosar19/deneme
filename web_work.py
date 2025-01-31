@@ -119,7 +119,7 @@ Ayrıca, bu analizler ile yapıların akustik özelliklerini optimize ederek, m�
 
         with amp_col:
          st.subheader("Amplitude")
-         amplitude_type = st.radio(
+         amplitude_type = st.selectbox(
         "Amplitude Type",
         options=["RMS", "Peak", "Peak-to-Peak"],
         index=0  # RMS varsayılan
@@ -127,14 +127,14 @@ Ayrıca, bu analizler ile yapıların akustik özelliklerini optimize ederek, m�
 
         with data_col:
            st.subheader("Data Collection")
-           bin_center = st.checkbox(
+           bin_center = st.selectbox(
         "On center of bin", 
         value=True  # Varsayılan işaretli
     )
     
         with data_bin:
            st.subheader("Bin Update")
-           bin_update = st.radio(
+           bin_update = st.selectbox(
         "Bin Update Mode",
         options=["Always", "Conditional", "Never"],
         index=0  # Always varsayılan
