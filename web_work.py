@@ -9,7 +9,7 @@ import streamlit as st
 st.set_page_config(page_title="Akustik Analiz Uygulamaları", page_icon=":bar_chart:", layout="wide")
 import matplotlib.pyplot as plt
 import plotly.express as px
-import pandas as pd
+import pandas as pd 
 from datetime import datetime
 from streamlit_app_döngülü import mainn
 from utils import df_t60, df_t60_dolu, yutum_katsayisi
@@ -101,6 +101,51 @@ Ayrıca, bu analizler ile yapıların akustik özelliklerini optimize ederek, m�
 
     elif choice == "Test_Overall":
         st.markdown("<h1 style='font-size: 28px;'>Test Sayfası <span style='font-size: 28px;'>📊</span></h1>", unsafe_allow_html=True)
+        with st.expander("Common Properties", expanded=True):
+    harmonic_input = st.text_input(
+        "Harmonic list (comma-separated)", 
+        value="-12, -4, 4, 12"
+    )
+    harmonics = [int(x.strip()) for x in harmonic_input.split(",")]
+
+fft_col, amp_col, data_col = st.columns(3)
+
+with fft_col:
+    st.subheader("FFT Window")
+    fft_window = st.selectbox(
+        "Select FFT Window",
+        options=["Hanning", "Hamming", "Blackman", "Flat-top"],
+        index=0  # Hanning varsayılan
+    )
+
+with amp_col:
+    st.subheader("Amplitude")
+    amplitude_type = st.radio(
+        "Amplitude Type",
+        options=["RMS", "Peak", "Peak-to-Peak"],
+        index=0  # RMS varsayılan
+    )
+
+with data_col:
+    st.subheader("Data Collection")
+    bin_center = st.checkbox(
+        "On center of bin", 
+        value=True  # Varsayılan işaretli
+    )
+    
+    st.subheader("Bin Update")
+    bin_update = st.radio(
+        "Bin Update Mode",
+        options=["Always", "Conditional", "Never"],
+        index=0  # Always varsayılan
+    )
+
+st.subheader("Spectral Weighting")
+weighting = st.selectbox(
+    "Select Weighting",
+    options=["None", "A-weighting", "C-weighting", "Z-weighting"],
+    index=0  # None varsayılan
+)
         test_option = st.radio("Test Seçeneğini Seçiniz:", ["Overall vs Time", "Overall vs RPM"])  
         if test_option == "Overall vs Time":
             st.write("Bu, Overall vs Time içeriğidir.")
