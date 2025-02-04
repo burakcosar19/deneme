@@ -103,7 +103,7 @@ Ayrıca, bu analizler ile yapıların akustik özelliklerini optimize ederek, m�
         st.markdown("<h1 style='font-size: 28px;'>Test Sayfası <span style='font-size: 28px;'>📊</span></h1>", unsafe_allow_html=True)
         
         # Sayfa başlığını ayarla
-        st.set_page_config(page_title="FFT Settings", layout="wide")
+         #st.set_page_config(page_title="FFT Settings", layout="wide")
 
         # Başlık
         st.title("FFT Settings Panel")
