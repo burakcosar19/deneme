@@ -154,7 +154,7 @@ Ayrıca, bu analizler ile yapıların akustik özelliklerini optimize ederek, m�
             # Buraya Test Seçeneği 2 ile ilgili kodlarınızı ekleyin
 
         if st.button("Grafiği Göster"):
-            overall_plott()
+            deneme_plot()
 
         uploaded_file = st.file_uploader(":file_folder: Veri dosyanızı buraya yükleyiniz. ",type=(["csv","txt","xlsx","xls"]))
         data = None
