@@ -179,13 +179,13 @@ It is also possible to optimize the acoustic properties of structures to improve
         st.session_state.test_date = test_date
     
 
-    elif choice == "Rapor":
+    elif choice == "Report":
         st.slider("What is your level",0,2000,step=50)
         st.markdown("<h1 style='font-size: 28px;'>Report Page <span style='font-size: 28px;'>📈</span></h1>", unsafe_allow_html=True)
         st.write("This page is where reports are guaranteed.")
-        st.write("Test Talep Eden/ Firma:", st.session_state.firma)
-        st.write("Malzeme İsmi:", st.session_state.malzeme)
-        st.write("Seçilen Deney Tarihi:", st.session_state.test_date)
+        st.write("Test Requestor / Company:", st.session_state.firma)
+        st.write("Material Name:", st.session_state.malzeme)
+        st.write("Selected Experiment Date:", st.session_state.test_date)
         #st.table(df_t60_dolu)
         
         if st.session_state.show_graph:  # Bu koÅul eklenerek T60 dolu tablosu kontrolÃ¼ yapÄ±lÄ±r
