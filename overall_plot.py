@@ -34,7 +34,7 @@ def deneme_plot():
     ax.grid(axis='y', linestyle='--', alpha=0.5)
 
     # Grafiği göster
-    plt.show(fig)
+    st.pyplot(fig)
 
 if __name__ == "__deneme_plot__":
     deneme_plot()
