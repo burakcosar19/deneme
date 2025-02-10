@@ -10,5 +10,5 @@ pygments
 mdurl
 markdown-it-py
 rich
-
+openpyxl
 
