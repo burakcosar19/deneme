@@ -51,7 +51,7 @@ def main():
     
     if choice == "Home Page":
         st.markdown("<h1 style='font-size: 28px;'>Ana Sayfa <span style='font-size: 28px;'>🏠 </span></h1>", unsafe_allow_html=True)
-        st.write(""“This web application is intended for analyzing acoustic data and determining the sound absorption coefficient of a material.
+        st.write("""This web application is intended for analyzing acoustic data and determining the sound absorption coefficient of a material.
                  has been developed. Acoustic Analysis Applications is a branch of science that focuses on the analysis and evaluation of sound and vibrations. These analyzes are usually acoustic measurements, 
                  is performed using specialized software and hardware systems, including data collection and evaluation processes.
                  Acoustic analysis is critical in many fields, for example, building acoustics, environmental noise control, the automotive industry, electroacoustic devices and medical applications.
