@@ -141,9 +141,7 @@ Ayrıca, bu analizler ile yapıların akustik özelliklerini optimize ederek, m�
         # Alt bilgi
         st.markdown("---")
         st.markdown("⚙️ This interface allows users to configure FFT settings interactively.")
-        if st.button("Grafiği Göster"):
-            overall_plott()
-
+        
        
         
         
@@ -154,6 +152,10 @@ Ayrıca, bu analizler ile yapıların akustik özelliklerini optimize ederek, m�
         elif test_option == "Overall vs RPM":
             st.write("Bu, Overall vs RPM içeriğidir.")
             # Buraya Test Seçeneği 2 ile ilgili kodlarınızı ekleyin
+
+        if st.button("Grafiği Göster"):
+            overall_plott()
+
         uploaded_file = st.file_uploader(":file_folder: Veri dosyanızı buraya yükleyiniz. ",type=(["csv","txt","xlsx","xls"]))
         data = None
         if uploaded_file is not None:
