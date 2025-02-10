@@ -15,6 +15,8 @@ from streamlit_app_döngülü import mainn
 from utils import df_t60, df_t60_dolu, yutum_katsayisi
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
+from overall_plot import overall_plott 
+
 
 col1, col2 = st.columns([1, 0.5])
 with col1:
@@ -139,7 +141,8 @@ Ayrıca, bu analizler ile yapıların akustik özelliklerini optimize ederek, m�
         # Alt bilgi
         st.markdown("---")
         st.markdown("⚙️ This interface allows users to configure FFT settings interactively.")
-
+        if st.button("Grafiği Göster"):
+            overall_plott()
 
        
         
