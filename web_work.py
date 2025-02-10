@@ -74,11 +74,11 @@ It is also possible to optimize the acoustic properties of structures to improve
         
         col1, col2, col3 = st.columns([1, 1, 1])
         with col1:
-            firma = st.text_input("Test Talep Eden/ Firma:")
+            firma = st.text_input("Test Requestor / Company:")
         with col2:
-            malzeme = st.text_input("Malzeme İsmi:")
+            malzeme = st.text_input("Material Name:")
         with col3:
-            test_date = st.date_input("Test Tarihi", datetime.today())
+            test_date = st.date_input("Test Date", datetime.today())
         
         if st.button("T60 Values for Empty Cabin"):
             st.table(df_t60)
@@ -88,7 +88,7 @@ It is also possible to optimize the acoustic properties of structures to improve
 
         if st.button("Show Results"): # bu butona basÄ±ldÄ±ÄÄ±nda kod Ã§alÄ±Åcak
             if firma.strip() == "" or malzeme.strip() == "" or test_date is None or data is None:
-                st.error(":exclamation: Lütfen tüm alanlarÄ± doldurun.")
+                st.error(":exclamation: Please fill in all fields.")
             else:
                 #mainn()
                 yutum_katsayisi()
@@ -168,11 +168,11 @@ It is also possible to optimize the acoustic properties of structures to improve
         
         col1, col2, col3 = st.columns([1, 1, 1])
         with col1:
-            firma = st.text_input("Test Talep Eden/ Firma:")
+            firma = st.text_input("Test Requestor / Company:")
         with col2:
-            malzeme = st.text_input("Malzeme İsmi:")
+            malzeme = st.text_input("Material Name:")
         with col3:
-            test_date = st.date_input("Test Tarihi", datetime.today())
+            test_date = st.date_input("Test Date", datetime.today())
 
         st.session_state.firma = firma
         st.session_state.malzeme = malzeme
