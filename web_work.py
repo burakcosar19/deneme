@@ -15,7 +15,7 @@ from streamlit_app_döngülü import mainn
 from utils import df_t60, df_t60_dolu, yutum_katsayisi
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
-from overall_plot import overall_plott 
+from overall_plot import deneme_plot
 
 
 col1, col2 = st.columns([1, 0.5])
