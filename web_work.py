@@ -157,9 +157,9 @@ It is also possible to optimize the acoustic properties of structures to improve
             # Buraya Test Seçeneği 2 ile ilgili kodlarınızı ekleyin
 
         if st.button("Show Graphic"):
-            if option == "Overall vs Time":
+            if test_option == "Overall vs Time":
                 deneme_plot(df)
-            elif option == "Overall vs RPM":
+            elif test_option == "Overall vs RPM":
                 deneme_plot1(df)
                 
                 
