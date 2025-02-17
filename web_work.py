@@ -16,6 +16,7 @@ from utils import df_t60, df_t60_dolu, yutum_katsayisi
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from overall_plot import deneme_plot
+from overall_plot import deneme_plot1
 
 
 col1, col2 = st.columns([1, 0.5])
@@ -156,10 +157,10 @@ It is also possible to optimize the acoustic properties of structures to improve
             # Buraya Test Seçeneği 2 ile ilgili kodlarınızı ekleyin
 
         if st.button("Show Graphic"):
-            if option == '"Overall vs Time":
-            show_graph(df)
+            if option == "Overall vs Time":
+            deneme_plot(df)
             elif option == "Overall vs RPM":
-                show_another_graph(df)
+                deneme_plot1(df)
                 
                 
             
