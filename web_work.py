@@ -158,7 +158,7 @@ It is also possible to optimize the acoustic properties of structures to improve
 
         if st.button("Show Graphic"):
             if option == "Overall vs Time":
-            deneme_plot(df)
+                deneme_plot(df)
             elif option == "Overall vs RPM":
                 deneme_plot1(df)
                 
