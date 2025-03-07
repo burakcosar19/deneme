@@ -5,7 +5,7 @@ Created on Thu Jan 30 17:29:37 2025
 @author: lenovo
 """
 
-import streamli as st
+import streamlit as st
 st.set_page_config(page_title="Noise and Vibration Post Processing", page_icon=":bar_chart:", layout="wide")
 import matplotlib.pyplot as plt
 import plotly.express as px
