@@ -58,7 +58,7 @@ def analyze_time_series(time_rpm, rpm, time_pa, pa, n_blocks):
 
 # Veri dosyalarını okuma
 #dataRpm = pd.read_excel("C:\\Users\\GkhnKznn\\Desktop\\AracNVH\\TPA_Ornek_Data_Analiz_RPMvsTime.xlsx", skiprows=60, header=0)
-data = pd.read_csv("C:\Users\Burak\OneDrive\Desktop\ornek_data_03.csv")
+data = pd.read_csv("https://github.com/burakcosar19/deneme/blob/main/ornek_data_03.csv")
 #dataOr = pd.read_excel("C:\\Users\\GkhnKznn\\Desktop\\AracNVH\\TPA_Ornek_Data_Analiz_OALevel_vs_RPM.xlsx")
 
 # Veriler
