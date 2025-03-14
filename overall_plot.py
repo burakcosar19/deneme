@@ -9,16 +9,17 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
+from timeTorpm import calculate_a_weighted_pressure , calculate_n_blocks , analyze_time_series
 
-def deneme_plot():
+def deneme_plot(data):
     # Excel dosyasını oku
-    df = pd.read_excel("overallll.xlsx")
+    #df = pd.read_excel("overallll.xlsx")
 
     # Şekil ve eksenleri oluştur
     fig, ax = plt.subplots(figsize=(16, 6))
 
     # Çizgi grafiğini oluştur
-    ax.plot(df["Linear"], df["dB(A)"], linewidth=6)
+    ax.plot(data["s"], data["Pa"], linewidth=6)
 
     # Başlık ve eksen etiketlerini ayarla
     ax.set_title("Overall Level vs. Time")
@@ -26,7 +27,7 @@ def deneme_plot():
     ax.set_xlabel("Zaman (s)", fontsize=10)
 
     # X ekseni etiketlerini seyrekleştir
-    ax.set_xticks(np.arange(0, df["Linear"].max(), step=0.75))  # X ekseni için 0.75 birimde bir göster
+    ax.set_xticks(np.arange(0, data["Pa"].max(), step=10))  # X ekseni için 0.75 birimde bir göster
     ax.set_xticklabels(ax.get_xticks(), rotation=90, fontsize=8)
     ax.set_yticks(np.arange(0, 101, step=25))  # Y ekseni için 25 birimde bir göster
 
@@ -40,11 +41,26 @@ def deneme_plot():
 def deneme_plot1():
     df = pd.read_excel("TPA_Ornek_Data_Analiz_OALevel_vs_RPM.xlsx")
 
+        # Veriler
+    t_data = df['s'].values  # RPM zaman verisi
+    t_data = t_data - t_data[0]
+    rpm_data = df['rpm'].values  # RPM verisi
+    pa_data = df['Pa'].values  # Pa verisi
+
+
+    pressure, fs =timeTorpm.calculate_a_weighted_pressure(t_data, pa_data) # type: ignore
+
+    n_block = timeTorpm.calculate_n_blocks(rpm_data, rpm_step=25) # type: ignore
+
+    rpm, overall = timeTorpm.analyze_time_series(t_data, rpm_data, t_data,pressure, n_block ) # type: ignore
+
     # Şekil ve eksenleri oluştur
     fig, ax = plt.subplots(figsize=(16, 6))
 
     # Çizgi grafiğini oluştur
-    ax.plot(df["Linear"], df["dB(A)"], linewidth=6)
+    ax.plot(rpm, overall, linewidth=6)
+
+
 
     # Başlık ve eksen etiketlerini ayarla
     ax.set_title("Overall Level vs. RPM")
