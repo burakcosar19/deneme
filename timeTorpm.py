@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import waveform_analysis
+import waveform_analysis  
 
 
 def analyze_time_series(time_rpm, rpm, time_pa, pa, n_blocks):
@@ -57,8 +57,8 @@ def analyze_time_series(time_rpm, rpm, time_pa, pa, n_blocks):
     return mean_rpms, rms_pas
 
 # Veri dosyalarını okuma
-dataRpm = pd.read_excel("C:\\Users\\GkhnKznn\\Desktop\\AracNVH\\TPA_Ornek_Data_Analiz_RPMvsTime.xlsx", skiprows=60, header=0)
-data = pd.read_csv("C:\\Users\\GkhnKznn\\Downloads\\Ornek_Datalar_Karsilastirildi\\ornek_data_03.csv")
+#dataRpm = pd.read_excel("C:\\Users\\GkhnKznn\\Desktop\\AracNVH\\TPA_Ornek_Data_Analiz_RPMvsTime.xlsx", skiprows=60, header=0)
+data = pd.read_csv("\\home\\vscode\\workspaces\\deneme\\ornek_data_03.csv")
 #dataOr = pd.read_excel("C:\\Users\\GkhnKznn\\Desktop\\AracNVH\\TPA_Ornek_Data_Analiz_OALevel_vs_RPM.xlsx")
 
 # Veriler
@@ -106,7 +106,7 @@ def calculate_n_blocks(rpm_data, rpm_step=25):
 # Görselleştirme
 fig, ( ax2) = plt.subplots(1, 1, figsize=(12, 8))       
 # PA RMS plot
-ax2.plot(mean_rpms, rms_pas,color = 'black', label='yazilim')
+ax2.plot(mean_rpms, rms_pas,color = 'black', label='yazilim') # type: ignore
 #ax2.plot(Orpm, Ooverall, label='okan abi')
 ax2.set_xlabel('rpm')
 ax2.set_ylabel('dB(A)')
@@ -116,4 +116,5 @@ ax2.grid(True)
 ax2.legend()
 plt.tight_layout()
 plt.show()
+
 
