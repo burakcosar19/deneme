@@ -156,16 +156,7 @@ It is also possible to optimize the acoustic properties of structures to improve
             st.write("This is the Overall vs RPM content.")
             # Buraya Test Seçeneği 2 ile ilgili kodlarınızı ekleyin
 
-        if st.button("Show Graphic"):
-            if test_option == "Overall vs Time":
-                deneme_plot()
-            elif test_option == "Overall vs RPM":
-                deneme_plot1()
-                
-                
-            
-
-            
+        
 
         uploaded_file = st.file_uploader(":file_folder: Upload your data file here. ",type=(["csv","txt","xlsx","xls"]))
         data = None
@@ -186,7 +177,13 @@ It is also possible to optimize the acoustic properties of structures to improve
         st.session_state.firma = firma
         st.session_state.malzeme = malzeme
         st.session_state.test_date = test_date
-    
+
+        
+        if st.button("Show Graphic"):
+                if test_option == "Overall vs Time":
+                    deneme_plot()
+                elif test_option == "Overall vs RPM":
+                    deneme_plot1()
 
     elif choice == "Report":
         st.slider("What is your level",0,2000,step=50)
@@ -211,8 +208,3 @@ It is also possible to optimize the acoustic properties of structures to improve
 
 if __name__ == "__main__":
     main()  
-
-    
-
-
-    
