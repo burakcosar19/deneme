@@ -4,42 +4,54 @@ Created on Mon Feb 10 02:41:14 2025
 
 @author: lenovo
 """
-
+import glob 
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
-from timeTorpm import calculate_a_weighted_pressure , calculate_n_blocks , analyze_time_series
+from timeTorpm import TimeSeriesAnalyzer
+from rpmTotime import RpmSeriesAnalyzer
 
-def deneme_plot(data):
+def deneme_plot():
     # Excel dosyasını oku
     #df = pd.read_excel("overallll.xlsx")
+    
+    file_path = glob.glob("*ornek_data_04.csv")[0]
+    df = pd.read_csv(file_path)
 
-    # Şekil ve eksenleri oluştur
-    fig, ax = plt.subplots(figsize=(16, 6))
-
-    # Çizgi grafiğini oluştur
-    ax.plot(data["s"], data["Pa"], linewidth=6)
-
-    # Başlık ve eksen etiketlerini ayarla
-    ax.set_title("Overall Level vs. Time")
-    ax.set_ylabel("Ses Basınç Seviyesi [dB(A)]", fontsize=8)
-    ax.set_xlabel("Zaman (s)", fontsize=10)
-
-    # X ekseni etiketlerini seyrekleştir
-    ax.set_xticks(np.arange(0, data["Pa"].max(), step=10))  # X ekseni için 0.75 birimde bir göster
-    ax.set_xticklabels(ax.get_xticks(), rotation=90, fontsize=8)
-    ax.set_yticks(np.arange(0, 101, step=25))  # Y ekseni için 25 birimde bir göster
-
-    # Y eksenine grid ekle
-    ax.grid(axis='y', linestyle='--', alpha=0.5)
+    rpm_data = df['rpm'].values
+    t_data = df['s'].values - df['s'].values[0]
+    pa_data = df['Pa'].values
+ 
+     # Örneklem frekansı ve A-weighting
+    fs, weighted_pa =RpmSeriesAnalyzer.calculate_sample_rate(t_data, pa_data)
+   
+    # RPM işleme
+    rpm, dB =RpmSeriesAnalyzer.process_rpm_data(
+        rpm_data=rpm_data,
+        t_data=t_data,
+        pa_data=weighted_pa,
+        start_rpm_step=25,
+        window_type='hann'
+    )
+    
+    # Görselleştirme
+    plt.figure(figsize=(10,6))
+    plt.plot(rpm, dB, 'k--', label='Hesaplanan Veri')
+    plt.xlabel('RPM'), plt.ylabel('dB(A)')
+    plt.title('RPM vs Ses Seviyesi')
+    plt.grid(True), plt.legend()
+    plt.show()
+        
 
     # Grafiği göster
-    st.pyplot(fig)
+    st.pyplot()
 
 
 def deneme_plot1():
-    df = pd.read_excel("TPA_Ornek_Data_Analiz_OALevel_vs_RPM.xlsx")
+    #df = pd.read_excel("TPA_Ornek_Data_Analiz_OALevel_vs_RPM.xlsx")
+    file_path = glob.glob("*ornek_data_04.csv")[0]
+    df = pd.read_csv(file_path)
 
         # Veriler
     t_data = df['s'].values  # RPM zaman verisi
@@ -48,36 +60,15 @@ def deneme_plot1():
     pa_data = df['Pa'].values  # Pa verisi
 
 
-    pressure, fs =timeTorpm.calculate_a_weighted_pressure(t_data, pa_data) # type: ignore
+    pressure = TimeSeriesAnalyzer.calculate_a_weighted_pressure(t_data, pa_data)  
 
-    n_block = timeTorpm.calculate_n_blocks(rpm_data, rpm_step=25) # type: ignore
+    n_block = TimeSeriesAnalyzer.calculate_n_blocks(rpm_data, rpm_step=25)  
 
-    rpm, overall = timeTorpm.analyze_time_series(t_data, rpm_data, t_data,pressure, n_block ) # type: ignore
+    rpm, overall = TimeSeriesAnalyzer.analyze_time_series(t_data, rpm_data, t_data,pressure, n_block ) 
 
-    # Şekil ve eksenleri oluştur
-    fig, ax = plt.subplots(figsize=(16, 6))
+    TimeSeriesAnalyzer.plot_results(rpm,overall)
 
-    # Çizgi grafiğini oluştur
-    ax.plot(rpm, overall, linewidth=6)
-
-
-
-    # Başlık ve eksen etiketlerini ayarla
-    ax.set_title("Overall Level vs. RPM")
-    ax.set_ylabel("Ses Basınç Seviyesi [dB(A)]", fontsize=8)
-    ax.set_xlabel("Zaman (s)", fontsize=10)
-
-    # X ekseni etiketlerini seyrekleştir
-    # X ekseni için 0.75 birimde bir göster
-    ax.set_xticks(np.arange(0, df["Linear"].max(), step=50))
-    ax.set_xticklabels(ax.get_xticks(), rotation=90, fontsize=8)
-    # Y ekseni için 25 birimde bir göster
-    ax.set_yticks(np.arange(0, 101, step=25))
-
-    # Y eksenine grid ekle
-    ax.grid(axis='y', linestyle='--', alpha=0.5)
-
-    st.pyplot(fig)
+    st.pyplot()
 
 if __name__ == "__deneme_plot__":
     deneme_plot()
