@@ -17,6 +17,9 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from overall_plot import deneme_plot
 from overall_plot import deneme_plot1
+from readRsp import ReadRPC
+import struct
+import io
 
 
 col1, col2 = st.columns([1, 0.5])
@@ -158,14 +161,54 @@ It is also possible to optimize the acoustic properties of structures to improve
 
         
 
-        uploaded_file = st.file_uploader(":file_folder: Upload your data file here. ",type=(["csv","txt","xlsx","xls"]))
-        data = None
-        if uploaded_file is not None:
-            data = pd.read_csv(uploaded_file)   
-            st.dataframe(data)
+        uploaded_file_1 = st.file_uploader(":file_folder: Upload your first data file here. ",type=(["csv","txt","xlsx","xls"]))
+        data_1 = None
+        if uploaded_file_1 is not None:
+            data_1 = pd.read_csv(uploaded_file_1)   
+            st.dataframe(data_1)
         else:
-            st.warning("Upload your data file here.")
+            st.warning("Upload your csv,txt,xlsx,xls data file here.")
         
+
+        uploaded_file_2= st.file_uploader(":file_folder: Upload your rsp data file here. ",type=(["rsp"]))
+        data_2 = None
+        if uploaded_file_2 is not None:
+                        # BytesIO nesnesi oluşturuyoruz, böylece ReadRPC sınıfı ile uyumlu hale gelir
+            file_like_object = io.BytesIO(uploaded_file_2.read())
+            
+            # ReadRPC sınıfını kullanarak dosyayı okuyoruz
+            rpc = ReadRPC(file_like_object)  # BytesIO nesnesini sınıfa geçiriyoruz
+            header_info = rpc.header()  # Başlık bilgisini alıyoruz
+
+            # Başlık bilgisini Streamlit'de görüntülüyoruz
+            st.write("Header Information:", header_info)
+
+            # Şimdi verileri okuyoruz
+            channels = int(header_info.get('CHANNELS', 0))
+            channel_data = []
+
+            # Verileri okuma kısmı
+            file_like_object.seek(128 * int(header_info['NUM_HEADER_BLOCKS']))
+            data_format = '<' + 'f' * channels
+
+            while True:
+                data_bytes = file_like_object.read(channels * 4)
+                if not data_bytes:
+                    break
+                data_values = struct.unpack(data_format, data_bytes)
+                channel_data.append(data_values)
+
+            # DataFrame oluşturma
+            channel_names = [header_info.get(f'DESC.CHAN_{i + 1}', f'Ch_{i + 1}') for i in range(channels)]
+            df_rpc_data = pd.DataFrame(channel_data, columns=channel_names)
+
+            # DataFrame'i Streamlit'de gösteriyoruz
+            st.dataframe(df_rpc_data)
+        else:
+            st.warning("Upload your rsp data file here.")
+
+
+
         col1, col2, col3 = st.columns([1, 1, 1])
         with col1:
             firma = st.text_input("Test Requestor / Company:")
@@ -207,4 +250,4 @@ It is also possible to optimize the acoustic properties of structures to improve
                 st.download_button("Download Report as PDF", f.read(), file_name="rapor.pdf", key="pdf-download")
 
 if __name__ == "__main__":
-    main()  
+    main()   
