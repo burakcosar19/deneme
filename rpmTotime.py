@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import waveform_analysis
+from waveform_analysis import A_weight, A_weighting, ABC_weighting
 
 def calculate_sample_rate(t_data, pa_data):
     """
