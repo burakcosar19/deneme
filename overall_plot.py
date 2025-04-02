@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
 from timeTorpm import TimeSeriesAnalyzer
-#from rpmTotime import RpmSeriesAnalyzer
+from rpmTotime import RpmSeriesAnalyzer
 
 def deneme_plot():
     # Excel dosyasını oku
