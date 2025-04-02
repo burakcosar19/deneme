@@ -11,4 +11,4 @@ mdurl
 markdown-it-py
 rich
 openpyxl
-waveform_analysis
+
