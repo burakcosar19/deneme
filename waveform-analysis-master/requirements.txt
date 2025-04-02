@@ -1,5 +1,8 @@
+streamlit
 numpy
 scipy
+TimeSeriesAnalyzer
+waveform_analysis
 
 pytest
 pytest-cov
