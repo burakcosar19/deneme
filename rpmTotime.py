@@ -148,14 +148,14 @@ class RpmSeriesAnalyzer:
         # save the whole filtered waveform.
         sos = A_weighting(fs, output='sos')
         return sosfilt(sos, signal)
-        def calculate_sample_rate(t_data, pa_data):
-            """
-            Örneklem frekansını hesaplar ve A-ağırlık filtresi uygular
-            """
-            deltaT = t_data[1] - t_data[0]
-            fs = 1 / deltaT
-            weighted_pa = waveform_analysis.A_weight(pa_data, fs)
-            return fs, weighted_pa
+    def calculate_sample_rate(t_data, pa_data):
+        """
+        Örneklem frekansını hesaplar ve A-ağırlık filtresi uygular
+        """
+        deltaT = t_data[1] - t_data[0]
+        fs = 1 / deltaT
+        weighted_pa = waveform_analysis.A_weight(pa_data, fs)
+        return fs, weighted_pa
 
     def process_rpm_data(rpm_data, t_data, pa_data, 
                     start_rpm_step=25, window_type='hann'):
