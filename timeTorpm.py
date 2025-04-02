@@ -32,7 +32,7 @@ class TimeSeriesAnalyzer:
         fs = 1 / delta_t  # Örnekleme frekansı (Hz)
         
         # A-ağırlıklı basınç verisini hesaplama
-        a_weighted_data = waveform_analysis.A_weight(pressure_data, fs)
+        a_weighted_data = A_weight(pressure_data, fs)
         
         return a_weighted_data
 
