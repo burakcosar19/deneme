@@ -11,3 +11,5 @@ mdurl
 markdown-it-py
 rich
 openpyxl
+TimeSeriesAnalyzer
+waveform_analysis
