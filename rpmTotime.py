@@ -154,7 +154,7 @@ class RpmSeriesAnalyzer:
         """
         deltaT = t_data[1] - t_data[0]
         fs = 1 / deltaT
-        weighted_pa = waveform_analysis.A_weight(pa_data, fs)
+        weighted_pa = A_weight(pa_data, fs)
         return fs, weighted_pa
 
     def process_rpm_data(rpm_data, t_data, pa_data, 
