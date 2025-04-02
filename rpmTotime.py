@@ -117,7 +117,7 @@ class RpmSeriesAnalyzer:
         Since this uses the bilinear transform, frequency response around fs/2 will
         be inaccurate at lower sampling rates.
         """
-        z, p, k = ABC_weighting('A')
+        z, p, k = RpmSeriesAnalyzer.ABC_weighting('A')
     
         # Use the bilinear transformation to get the digital filter.
         z_d, p_d, k_d = bilinear_zpk(z, p, k, fs)
@@ -146,7 +146,7 @@ class RpmSeriesAnalyzer:
         # rates. So upsample 48 kHz by 6 times to get an accurate measurement?
         # TODO: Also this could just be a measurement function that doesn't
         # save the whole filtered waveform.
-        sos = A_weighting(fs, output='sos')
+        sos = RpmSeriesAnalyzer.A_weighting(fs, output='sos')
         return sosfilt(sos, signal)
     def calculate_sample_rate(t_data, pa_data):
         """
