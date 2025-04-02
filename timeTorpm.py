@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import waveform_analysis
+from waveform_analysis import A_weight, A_weighting, ABC_weighting
 import glob
 import streamlit as st
 
